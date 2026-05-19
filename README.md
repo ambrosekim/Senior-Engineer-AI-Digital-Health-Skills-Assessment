@@ -37,9 +37,11 @@ This repository contains the starter code for your submission. Please read every
 ---
 
 ### Submission Guidelines
+- Fork this repository to your own GitHub account.
+- Submit your solution by sharing a **link to your forked repository**.
+- You have **3 days** to complete and submit your work.
+- Include clear local setup instructions and a production deployment plan in your submission (see the instructions page for details).
+- Do not push any changes to the repository after the deadline.
 
-- Submit your completed project by providing a **link to your GitHub repository**.
-- You have **5 days** to complete and submit your solution.
-- Include clear local run instructions and a production deployment plan in your submission (see the instructions page for details).
 
 ---

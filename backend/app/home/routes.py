@@ -101,6 +101,7 @@ async def home():
             <ul>
                 <li>Feel free to expand your README or inline documentation as you progress through the assessment.</li>
                 <li>If you make architectural changes from the starter code, document your reasoning clearly.</li>
+                <li>Commit frequently with descriptive messages to illustrate your development workflow; avoid submitting a single, monolithic commit at the conclusion of the assessment.</li>
             </ul>
 
             <p style="margin-top: 32px; font-weight: 700; font-size: 1.05rem;">Good luck &mdash; we look forward to reviewing your submission!</p>
