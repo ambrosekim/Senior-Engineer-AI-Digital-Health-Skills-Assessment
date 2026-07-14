@@ -4,6 +4,12 @@ services:
         context: ./backend
         dockerfile: Dockerfile
       restart: always
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=postgres
+        - POSTGRES_HOST=relational_db
+        - POSTGRES_PORT=5432
       ports:
         - "6100:6100"
 
