@@ -36,6 +36,9 @@ services:
       restart: always
       environment:
         - BACKEND_URL=http://backend:6100
+        - CHAINLIT_AUTH_SECRET=${CHAINLIT_AUTH_SECRET}
+        - CHAINLIT_USERNAME=${CHAINLIT_USERNAME}
+        - CHAINLIT_PASSWORD=${CHAINLIT_PASSWORD}
       ports:
         - "8000:8000"
   
@@ -57,10 +60,7 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     ports:
-      # Host 11435 (not 11434) to avoid clashing with a native Ollama
-      # already bound to 127.0.0.1:11434 on the host. The backend always
-      # reaches this container over the internal network at ollama:11434.
-      - "11435:11434"
+      - "11434:11434"
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
