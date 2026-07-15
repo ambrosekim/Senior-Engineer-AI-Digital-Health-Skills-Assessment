@@ -24,6 +24,7 @@ MarkupSafe==3.0.3
 mdurl==0.1.2
 packaging==26.2
 pydantic==2.13.3
+pypdf==5.1.0
 pydantic-extra-types==2.11.1
 pydantic-settings==2.14.0
 pydantic_core==2.46.3
