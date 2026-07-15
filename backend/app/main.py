@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.db import engine, init_db, settings
 from app.documents.routes import router as documents_router
 from app.home.routes import router as home_router
+from app.query.routes import router as query_router
 
 
 @asynccontextmanager
@@ -26,3 +27,4 @@ app.add_middleware(
 
 app.include_router(home_router)
 app.include_router(documents_router)
+app.include_router(query_router)

@@ -39,6 +39,10 @@ class Settings(BaseSettings):
     chunk_size_chars: int = 1000
     chunk_overlap_chars: int = 150
 
+    # RAG query
+    ollama_chat_model: str = "llama3.2"
+    top_k: int = 4
+
     # CORS
     cors_allowed_origins: str = "http://localhost:3000"
 
