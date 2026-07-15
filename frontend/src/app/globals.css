@@ -125,3 +125,60 @@ li {
   font-size: 0.95rem;
 }
 
+/* Document repository page */
+.repository-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2.5rem 2rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.repository-table-wrapper {
+  overflow-x: auto;
+}
+
+.repository-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.repository-table th,
+.repository-table td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.repository-table th {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.status-ready {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.status-processing {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.status-badge.status-failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+

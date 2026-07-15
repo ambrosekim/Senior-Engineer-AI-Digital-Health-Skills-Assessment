@@ -25,6 +25,7 @@ export default function RootLayout({
         <nav className="app-nav">
           <Link href="/">Home</Link>
           <Link href="/upload">Upload PDF</Link>
+          <Link href="/repository">Document Repository</Link>
         </nav>
         {children}
 

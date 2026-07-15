@@ -34,7 +34,7 @@ services:
         dockerfile: Dockerfile
       restart: always
       ports:
-        - "8080:8000"
+        - "8000:8000"
   
   relational_db:
     image: pgvector/pgvector:pg16

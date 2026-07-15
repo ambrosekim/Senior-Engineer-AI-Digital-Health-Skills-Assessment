@@ -12,7 +12,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.db import get_session, settings
 from app.documents.embeddings import EmbeddingError, embed_texts, to_pgvector_literal
 from app.documents.pdf_processing import chunk_pages, extract_pages, looks_like_pdf
-from app.documents.schemas import DocumentUploadResponse
+from app.documents.schemas import DocumentListItem, DocumentUploadResponse
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/documents", tags=["documents"])
@@ -72,6 +72,42 @@ async def _mark_failed(session: AsyncSession, document_id: uuid.UUID) -> None:
         {"id": document_id},
     )
     await session.commit()
+
+
+@router.get("", response_model=list[DocumentListItem])
+async def list_documents(session: AsyncSession = Depends(get_session)) -> list[DocumentListItem]:
+    """List all uploaded documents (any status), newest first."""
+    rows = (
+        await session.execute(
+            text(
+                """
+                SELECT
+                    d.id,
+                    d.filename,
+                    d.page_count,
+                    d.status,
+                    d.created_at,
+                    count(c.id) AS chunk_count
+                FROM pdf_documents d
+                LEFT JOIN chunks c ON c.document_id = d.id
+                GROUP BY d.id
+                ORDER BY d.created_at DESC
+                """
+            )
+        )
+    ).mappings().all()
+
+    return [
+        DocumentListItem(
+            document_id=str(row["id"]),
+            filename=row["filename"],
+            page_count=row["page_count"] or 0,
+            chunk_count=row["chunk_count"],
+            status=row["status"],
+            created_at=row["created_at"],
+        )
+        for row in rows
+    ]
 
 
 @router.post("/upload", response_model=DocumentUploadResponse, status_code=status.HTTP_201_CREATED)
