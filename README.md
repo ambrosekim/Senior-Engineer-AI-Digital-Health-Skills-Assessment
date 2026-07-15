@@ -36,6 +36,12 @@ This repository contains the starter code for your submission. Please read every
 
 ---
 
+### Documentation
+
+Additional documentation and screenshots referenced in this README live in the [`docs/`](docs/) folder, with images under [`docs/screenshots/`](docs/screenshots/).
+
+---
+
 ### Submission Guidelines
 - Fork this repository to your own GitHub account.
 - Submit your solution by sharing a **link to your forked repository**.
