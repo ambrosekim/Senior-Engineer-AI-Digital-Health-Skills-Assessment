@@ -22,7 +22,7 @@ This repository contains the starter code for your submission. Please read every
    | Service | URL |
    |---|---|
    | Frontend / **Instructions** | [http://localhost:3000](http://localhost:3000) |
-   | Chainlit (Chat UI) | [http://localhost:8080](http://localhost:8080) |
+   | Chainlit (Chat UI) | [http://localhost:8000](http://localhost:8000) |
    | Backend (API) | [http://localhost:6100](http://localhost:6100) |
    | Database (PostgreSQL) | `localhost:5433` |
 
