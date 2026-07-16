@@ -44,7 +44,21 @@ flowchart LR
 Both models are declared in `docker-compose.yaml` and pulled automatically the first time the
 `ollama` container starts (no manual `ollama pull` needed).
 
-### 3. Prerequisites
+### 3. API Endpoints
+
+All endpoints are served by the `backend` FastAPI service at `http://localhost:6100`. Interactive
+Swagger docs are available at [`/docs`](http://localhost:6100/docs). None of these require
+authentication (the Chainlit UI's password login is a separate, frontend-only concern).
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/` | Renders the assessment's original HTML instructions page (not part of the RAG API — kept from the starter template). |
+| `GET` | `/api/health` | Liveness check. Returns `{"status": "ok"}`. |
+| `POST` | `/api/query` | Core RAG endpoint. Takes a `question` (and optional `top_k`, `session_id`), embeds it with `all-minilm`, retrieves the most similar chunks from pgvector via cosine similarity, and asks `llama3.2` to answer using only that retrieved context. Returns an `answer` string plus a `sources` array (filename, page number, chunk index, content excerpt, similarity score) for citation. Returns a fixed "no ingested documents" message if no chunks are found. |
+| `GET` | `/documents` | Lists every uploaded document (any status — `processing`, `ready`, or `failed`), newest first, with filename, page count, chunk count, and creation timestamp. |
+| `POST` | `/documents/upload` | Ingests a PDF. Validates it's a genuine PDF (content-type, extension, and magic bytes), enforces size/page-count limits, deduplicates by content hash (returns the existing record with `duplicate: true` if already ingested), then extracts text, chunks it per page, generates embeddings via `all-minilm`, and stores the document and its chunks in Postgres/pgvector. Returns the new document's id, filename, page/chunk counts, and status. |
+
+### 4. Prerequisites
 
 - Docker Engine 24+ and Docker Compose v2.20+ (`docker compose version`)
 - **Disk:** ~10 GB free — `llama3.2` (~2 GB) + `all-minilm` (~50 MB) plus the Postgres, Python,
