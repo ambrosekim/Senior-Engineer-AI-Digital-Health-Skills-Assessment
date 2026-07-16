@@ -31,6 +31,25 @@ class Settings(BaseSettings):
     db_init_max_attempts: int = 10
     db_init_retry_seconds: float = 2.0
 
+    # Document ingestion
+    ollama_host: str = "http://ollama:11434"
+    ollama_embed_model: str = "all-minilm"
+    max_upload_size_bytes: int = 20 * 1024 * 1024
+    max_pdf_pages: int = 300
+    chunk_size_chars: int = 1000
+    chunk_overlap_chars: int = 150
+
+    # RAG query
+    ollama_chat_model: str = "llama3.2"
+    top_k: int = 4
+
+    # CORS
+    cors_allowed_origins: str = "http://localhost:3000"
+
+    @property
+    def cors_origin_list(self) -> list[str]:
+        return [origin.strip() for origin in self.cors_allowed_origins.split(",") if origin.strip()]
+
     @property
     def database_url(self) -> URL:
         return URL.create(

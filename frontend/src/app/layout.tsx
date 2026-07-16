@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 
 
@@ -21,6 +22,11 @@ export default function RootLayout({
       <body
         className="flex min-h-screen flex-col items-center justify-between p-24"
       >
+        <nav className="app-nav">
+          <Link href="/">Home</Link>
+          <Link href="/upload">Upload PDF</Link>
+          <Link href="/repository">Document Repository</Link>
+        </nav>
         {children}
 
       </body>
